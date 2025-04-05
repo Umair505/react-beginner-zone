@@ -1,61 +1,81 @@
-import React, { useContext, useState } from 'react'
-import './Main.css'
-import { assets } from '../../assets/assets'
-import { Context } from '../../context/Context'
+// Main.js
+import React, { useContext, useState, useEffect } from 'react';
+import './Main.css';
+import { assets } from '../../assets/assets';
+import { Context } from '../../context/Context';
 
-const Main = () => {
-  const { onSent, response, isLoading, clearResponse } = useContext(Context)
-  const [input, setInput] = useState('')
-  const [recentPrompts, setRecentPrompts] = useState([])
-  const [showResult, setShowResult] = useState(false)
+const Main = ({ updateRecentPrompts }) => {
+  const { onSent, response, isLoading, clearResponse } = useContext(Context);
+  const [input, setInput] = useState('');
+  const [recentPrompts, setRecentPrompts] = useState([]);
+  const [showResult, setShowResult] = useState(false);
+  const [typedResponse, setTypedResponse] = useState('');
+  const [typingIndex, setTypingIndex] = useState(0);
+
+  useEffect(() => {
+    if (response && !isLoading) {
+      setTypingIndex(0);
+      setTypedResponse('');
+    }
+  }, [response, isLoading]);
+
+  useEffect(() => {
+    if (response && typingIndex < response.length && !isLoading) {
+      const timeout = setTimeout(() => {
+        setTypedResponse((prev) => prev + response[typingIndex]);
+        setTypingIndex((prev) => prev + 1);
+      }, 20); // Adjust typing speed here
+      return () => clearTimeout(timeout);
+    }
+  }, [response, typingIndex, isLoading]);
 
   const handleCardClick = (prompt) => {
-    setInput(prompt)
-    handleSent(prompt)
-  }
+    setInput(prompt);
+    handleSent(prompt);
+  };
 
   const handleSent = async (prompt) => {
     if (prompt) {
-      setRecentPrompts(prev => [prompt, ...prev])
-      setShowResult(true)
-      await onSent(prompt)
+      const newPrompt = prompt;
+      setRecentPrompts((prev) => [newPrompt, ...prev.slice(0, 4)]);
+      updateRecentPrompts((prev) => [newPrompt, ...prev.slice(0, 4)]);
+      setShowResult(true);
+      await onSent(prompt);
     }
-  }
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault()
-      handleSent(input)
+      e.preventDefault();
+      handleSent(input);
     }
-  }
+  };
 
   return (
-    <div className='main'>
+    <div className="main">
       <div className="nav">
         <p>Gemini</p>
         <img src={assets.user_icon} alt="user" />
       </div>
-      
+
       <div className="main-container">
         {!showResult ? (
           <>
             <div className="greet">
-              <p><span>Hello, Dev.</span></p>
+              <p>
+                <span>Hello, Dev.</span>
+              </p>
               <p>How can I help you today?</p>
             </div>
-            
+
             <div className="cards">
               {[
-                "Suggest beautiful places to see on an upcoming road trip",
-                "Briefly summarize this concept: urban planning",
-                "Brainstorm team bonding activities for our work retreat",
-                "Tell me about React js and React native"
+                'Suggest beautiful places to see on an upcoming road trip',
+                'Briefly summarize this concept: urban planning',
+                'Brainstorm team bonding activities for our work retreat',
+                'Tell me about React js and React native',
               ].map((prompt, index) => (
-                <div 
-                  key={index} 
-                  className="card" 
-                  onClick={() => handleCardClick(prompt)}
-                >
+                <div key={index} className="card" onClick={() => handleCardClick(prompt)}>
                   <p>{prompt}</p>
                   <img src={Object.values(assets)[index + 2]} alt="" />
                 </div>
@@ -77,17 +97,17 @@ const Main = () => {
                   <hr />
                 </div>
               ) : (
-                <p dangerouslySetInnerHTML={{__html: response}}></p>
+                <p dangerouslySetInnerHTML={{ __html: typedResponse }}></p>
               )}
             </div>
           </div>
         )}
-        
+
         <div className="main-bottom">
           <div className="search-box">
-            <input 
-              type="text" 
-              placeholder='Enter a prompt here'
+            <input
+              type="text"
+              placeholder="Enter a prompt here"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -96,11 +116,7 @@ const Main = () => {
               <img src={assets.gallery_icon} alt="gallery" />
               <img src={assets.mic_icon} alt="microphone" />
               {input ? (
-                <img 
-                  src={assets.send_icon} 
-                  alt="send" 
-                  onClick={() => handleSent(input)} 
-                />
+                <img src={assets.send_icon} alt="send" onClick={() => handleSent(input)} />
               ) : null}
             </div>
           </div>
@@ -110,7 +126,7 @@ const Main = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
