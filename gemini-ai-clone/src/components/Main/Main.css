@@ -1,92 +1,129 @@
 .main {
   flex: 1;
-  width: 100%; /* Full width */
-  background-color: #f5f5f5; /* Bright background */
-  color: #222;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  background: #121212;
+  color: #fff;
+  overflow: hidden;
 }
 
-.main .nav {
+.nav {
   padding: 20px;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #ccc;
+  background: #1f1f1f;
+  border-bottom: 1px solid #333;
 }
 
-.main .main-container {
+.main-container {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-.main .greet {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.main .greet span {
-  font-weight: bold;
-}
-
-.main .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.main .card {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.main .card img {
-  width: 30px;
-  margin-top: 10px;
-}
-
-.main .result {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.main .result-title {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.main .result-title img {
-  width: 24px;
-  margin-right: 10px;
-  border-radius: 50%; /* Rounded user icon */
-}
-
-.main .result-data {
-  flex: 1;
-  padding: 20px;
+  padding: 30px 40px;
   overflow-y: auto;
 }
 
-.main .loader {
+.greet {
+  text-align: center;
+  margin: 120px auto 60px;
+  max-width: 600px;
+  padding: 0 20px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.greet span {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.greet p:last-child {
+  font-size: 1.2rem;
+  color: #b0b0b0;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.card {
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card p {
+  font-size: 15px;
+  color: #eee;
+}
+
+.card img {
+  width: 24px;
+  margin-top: 16px;
+}
+
+.result {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.result-title {
+  display: flex;
+  align-items: center;
+  background: #1f1f1f;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.result-title img {
+  width: 28px;
+  margin-right: 10px;
+}
+
+.result-data {
+  flex: 1;
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  overflow-y: auto;
+}
+
+.loader {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px;
 }
 
-.main .loader hr {
+.loader hr {
   border: 4px solid #aaa;
   border-radius: 50%;
   width: 20px;
@@ -100,51 +137,50 @@
   100% { transform: rotate(360deg); }
 }
 
-.main .main-bottom {
-  padding: 20px;
-  border-top: 1px solid #ccc;
+.main-bottom {
+  position: sticky;
+  bottom: 0;
+  background: #1f1f1f;
+  padding: 15px 40px;
+  border-top: 1px solid #333;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.5);
 }
 
-.main .search-box {
+.search-box {
   display: flex;
   align-items: center;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  background: #333;
+  border-radius: 12px;
+  padding: 10px 15px;
 }
 
-.main .search-box input {
+.search-box input {
   flex: 1;
-  background: transparent;
   border: none;
-  color: #222;
-  padding: 8px;
+  padding: 10px;
+  font-size: 15px;
+  background: transparent;
+  color: #fff;
 }
 
-.main .search-box input:focus {
+.search-box input:focus {
   outline: none;
 }
 
-.main .search-box div {
+.search-box div {
   display: flex;
   align-items: center;
 }
 
-.main .search-box img {
+.search-box img {
   width: 24px;
   margin-left: 10px;
   cursor: pointer;
-  border-radius: 50%; /* Rounded user icon */
 }
 
-.main .bottom-info {
-  font-size: 0.8em;
-  color: #555;
-  margin-top: 10px;
+.bottom-info {
+  font-size: 12px;
+  color: #aaa;
   text-align: center;
-}
-
-.app-container {
-  display: flex;
+  margin-top: 10px;
 }

@@ -1,5 +1,4 @@
-// Main.js
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import './Main.css';
 import { assets } from '../../assets/assets';
 import { Context } from '../../context/Context';
@@ -11,6 +10,7 @@ const Main = ({ updateRecentPrompts }) => {
   const [showResult, setShowResult] = useState(false);
   const [typedResponse, setTypedResponse] = useState('');
   const [typingIndex, setTypingIndex] = useState(0);
+  const resultRef = useRef(null);
 
   useEffect(() => {
     if (response && !isLoading) {
@@ -24,10 +24,14 @@ const Main = ({ updateRecentPrompts }) => {
       const timeout = setTimeout(() => {
         setTypedResponse((prev) => prev + response[typingIndex]);
         setTypingIndex((prev) => prev + 1);
-      }, 20); // Adjust typing speed here
+      }, 20);
       return () => clearTimeout(timeout);
     }
   }, [response, typingIndex, isLoading]);
+
+  useEffect(() => {
+    resultRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [typedResponse]);
 
   const handleCardClick = (prompt) => {
     setInput(prompt);
@@ -62,9 +66,7 @@ const Main = ({ updateRecentPrompts }) => {
         {!showResult ? (
           <>
             <div className="greet">
-              <p>
-                <span>Hello, Dev.</span>
-              </p>
+              <p><span>Hello, Dev.</span></p>
               <p>How can I help you today?</p>
             </div>
 
@@ -83,7 +85,7 @@ const Main = ({ updateRecentPrompts }) => {
             </div>
           </>
         ) : (
-          <div className="result">
+          <div className="result" ref={resultRef}>
             <div className="result-title">
               <img src={assets.user_icon} alt="user" />
               <p>{recentPrompts[0]}</p>
@@ -91,39 +93,33 @@ const Main = ({ updateRecentPrompts }) => {
             <div className="result-data">
               <img src={assets.gemini_icon} alt="gemini" />
               {isLoading ? (
-                <div className="loader">
-                  <hr />
-                  <hr />
-                  <hr />
-                </div>
+                <div className="loader"><hr /><hr /><hr /></div>
               ) : (
                 <p dangerouslySetInnerHTML={{ __html: typedResponse }}></p>
               )}
             </div>
           </div>
         )}
+      </div>
 
-        <div className="main-bottom">
-          <div className="search-box">
-            <input
-              type="text"
-              placeholder="Enter a prompt here"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-            <div>
-              <img src={assets.gallery_icon} alt="gallery" />
-              <img src={assets.mic_icon} alt="microphone" />
-              {input ? (
-                <img src={assets.send_icon} alt="send" onClick={() => handleSent(input)} />
-              ) : null}
-            </div>
+      <div className="main-bottom">
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder="Enter a prompt here"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <div>
+            <img src={assets.gallery_icon} alt="gallery" />
+            <img src={assets.mic_icon} alt="microphone" />
+            {input && <img src={assets.send_icon} alt="send" onClick={() => handleSent(input)} />}
           </div>
-          <p className="bottom-info">
-            Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy and Gemini Apps
-          </p>
         </div>
+        <p className="bottom-info">
+          Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy and Gemini Apps
+        </p>
       </div>
     </div>
   );

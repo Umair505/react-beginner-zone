@@ -1,21 +1,19 @@
-
-// App.js
 import React, { useState } from 'react';
-import Sidebar from './components/sidebar/Sidebar';
+import './App.css';
+import Sidebar from './components/Sidebar/Sidebar';
 import Main from './components/Main/Main';
+import ContextProvider from './context/Context';
 
 const App = () => {
   const [recentPrompts, setRecentPrompts] = useState([]);
 
-  const updateRecentPrompts = (newPrompts) => {
-    setRecentPrompts(newPrompts);
-  };
-
   return (
-    <div className="app-container">
-      <Sidebar recentPrompts={recentPrompts} />
-      <Main updateRecentPrompts={updateRecentPrompts} />
-    </div>
+    <ContextProvider>
+      <div className="app-container">
+        <Sidebar recentPrompts={recentPrompts} />
+        <Main updateRecentPrompts={setRecentPrompts} />
+      </div>
+    </ContextProvider>
   );
 };
 

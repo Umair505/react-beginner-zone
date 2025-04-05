@@ -1,51 +1,50 @@
 .sidebar {
-    width: 70px;
-    height: 100vh;
-    background-color: #eaeaea; /* Light sidebar background */
-    color: #222;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: width 0.3s ease;
-    overflow: hidden;
-  }
-  
-  .sidebar.extended {
-    width: 250px;
-  }
-  
-  .sidebar .top,
-  .sidebar .bottom {
-    padding: 10px;
-  }
-  
-  .sidebar .menu {
-    width: 24px;
-    cursor: pointer;
-    margin-bottom: 20px;
-  }
-  
-  .sidebar .new-chat,
-  .sidebar .recent-entry,
-  .sidebar .bottom-item {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .sidebar .new-chat img,
-  .sidebar .recent-entry img,
-  .sidebar .bottom-item img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    border-radius: 50%; /* Rounded user icon */
-  }
-  
-  .sidebar .recent-title {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
+  width: 70px;
+  height: 100vh;
+  background-color: #eaeaea;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar.extended {
+  width: 250px;
+}
+
+.sidebar .top,
+.sidebar .bottom {
+  padding: 10px;
+}
+
+.sidebar .menu {
+  width: 24px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.sidebar .new-chat,
+.sidebar .recent-entry,
+.sidebar .bottom-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sidebar .new-chat img,
+.sidebar .recent-entry img,
+.sidebar .bottom-item img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.sidebar .recent-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}

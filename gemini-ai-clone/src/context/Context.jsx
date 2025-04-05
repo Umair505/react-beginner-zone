@@ -20,6 +20,7 @@ const ContextProvider = (props) => {
       setIsLoading(false);
     }
   };
+
   const contextValue = {
     onSent,
     response,
