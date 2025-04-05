@@ -93,7 +93,13 @@ const Main = ({ updateRecentPrompts }) => {
             <div className="result-data">
               <img src={assets.gemini_icon} alt="gemini" />
               {isLoading ? (
-                <div className="loader"><hr /><hr /><hr /></div>
+              <div class="loader-wave">
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+              </div>
               ) : (
                 <p dangerouslySetInnerHTML={{ __html: typedResponse }}></p>
               )}

@@ -3,17 +3,21 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: #121212;
+  background: #1f1f1f;
   color: #fff;
   overflow: hidden;
 }
 
 .nav {
-  padding: 20px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   background: #1f1f1f;
-  border-bottom: 1px solid #333;
+}
+
+.nav img {
+  border-radius: 50%;
+  width: 40px;
 }
 
 .main-container {
@@ -64,17 +68,19 @@
 }
 
 .card {
-  background: #1f1f1f;
+  background: #333;
   padding: 20px;
   border-radius: 12px;
   cursor: pointer;
   text-align: left;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   transition: all 0.2s ease;
+  border: 1px solid #444;
 }
 
 .card:hover {
   transform: translateY(-4px);
+  background: #3a3a3a;
 }
 
 .card p {
@@ -85,6 +91,7 @@
 .card img {
   width: 24px;
   margin-top: 16px;
+  border-radius: 50%;
 }
 
 .result {
@@ -97,40 +104,57 @@
 .result-title {
   display: flex;
   align-items: center;
-  background: #1f1f1f;
+  background: #333;
   padding: 15px;
   border-radius: 12px;
+  border: 1px solid #444;
 }
 
 .result-title img {
   width: 28px;
   margin-right: 10px;
+  border-radius: 50%;
 }
 
 .result-data {
   flex: 1;
-  background: #1f1f1f;
+  background: #333;
   padding: 20px;
   border-radius: 12px;
   margin-top: 20px;
   overflow-y: auto;
+  border: 1px solid #444;
 }
 
-.loader {
+
+.loader-wave {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px;
+  gap: 6px;
+  height: 50px;
 }
 
-.loader hr {
-  border: 4px solid #aaa;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  margin: 5px;
-  animation: spin 1.2s linear infinite;
+.loader-bar {
+  width: 6px;
+  height: 30px;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  border-radius: 3px;
+  animation: wave 1.2s infinite ease-in-out;
 }
+
+.loader-bar:nth-child(1) { animation-delay: -0.4s; }
+.loader-bar:nth-child(2) { animation-delay: -0.3s; }
+.loader-bar:nth-child(3) { animation-delay: -0.2s; }
+.loader-bar:nth-child(4) { animation-delay: -0.1s; }
+.loader-bar:nth-child(5) { animation-delay: 0s; }
+
+@keyframes wave {
+  0%, 40%, 100% { transform: scaleY(0.4); }
+  20% { transform: scaleY(1); }
+}
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
@@ -152,6 +176,7 @@
   background: #333;
   border-radius: 12px;
   padding: 10px 15px;
+  border: 1px solid #444;
 }
 
 .search-box input {
@@ -176,6 +201,7 @@
   width: 24px;
   margin-left: 10px;
   cursor: pointer;
+  border-radius: 50%;
 }
 
 .bottom-info {
