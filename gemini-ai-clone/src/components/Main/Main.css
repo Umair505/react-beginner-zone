@@ -166,8 +166,6 @@
   bottom: 0;
   background: #1f1f1f;
   padding: 15px 40px;
-  border-top: 1px solid #333;
-  box-shadow: 0 -3px 10px rgba(0,0,0,0.5);
 }
 
 .search-box {
@@ -176,7 +174,30 @@
   background: #333;
   border-radius: 12px;
   padding: 10px 15px;
+  max-width: 720px; /* Standard width like Gemini */
+  width: 100%;
+  margin: 0 auto; /* Center the box */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
   border: 1px solid #444;
+  transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+  border-color: #4facfe;
+  box-shadow: 0 1px 6px rgba(79, 172, 254, 0.3);
+}
+
+/* If you want to constrain the width on larger screens */
+@media (min-width: 768px) {
+  .search-box {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .search-box {
+    width: 80%;
+  }
 }
 
 .search-box input {

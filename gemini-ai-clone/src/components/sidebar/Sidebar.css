@@ -22,8 +22,10 @@
 
 .sidebar .menu {
   width: 24px;
+  height: 24px;
   cursor: pointer;
   margin-bottom: 20px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
 .sidebar .new-chat,
@@ -35,6 +37,7 @@
   border-radius: 5px;
   cursor: pointer;
   color: #fff;
+  transition: all 0.2s ease;
 }
 
 .sidebar .new-chat:hover,
@@ -49,11 +52,32 @@
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  border-radius: 50%;
+  filter: invert(92%) sepia(9%) saturate(109%) hue-rotate(169deg) brightness(98%) contrast(89%);
+  transition: all 0.2s ease;
+}
+
+.sidebar .new-chat:hover img,
+.sidebar .recent-entry:hover img,
+.sidebar .bottom-item:hover img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
 .sidebar .recent-title {
   font-weight: bold;
   margin-bottom: 10px;
   color: #aaa;
+  padding-left: 8px;
+}
+
+/* For better icon visibility in extended state */
+.sidebar.extended .new-chat img,
+.sidebar.extended .recent-entry img,
+.sidebar.extended .bottom-item img {
+  filter: invert(85%) sepia(12%) saturate(200%) hue-rotate(170deg) brightness(95%) contrast(90%);
+}
+
+.sidebar.extended .new-chat:hover img,
+.sidebar.extended .recent-entry:hover img,
+.sidebar.extended .bottom-item:hover img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
