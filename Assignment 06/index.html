@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Janala</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- LordIcon -->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+</head>
+<body>
+    <header>
+        <nav id="navbar" class="w-[96%] mx-auto flex justify-between py-5 hidden hid">
+            <div class="hover:cursor-pointer">
+                <h1 class="flex justify-center items-center font-bold">English<img src="./assets/logo.png" alt="">জানালা</h1>
+            </div>
+            <div class="gap-5 flex">
+                <button class="button1 text-center" onclick="scrollToSection('faq-section')">
+                    <lord-icon
+                    class="icon-white-on-hover"
+                        src="https://cdn.lordicon.com/axteoudt.json"
+                        trigger="hover"
+                        style="width:20px;height:20px"> <!-- Normal icon size -->
+                    </lord-icon>
+                    FAQ 
+                </button>
+                <button class="button1" onclick="scrollToSection('learn-section')"><i class="fa-solid fa-book-open"></i>Learn</button>
+                <button class="button1" id="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i>LOGOUT</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="w-11/12 mx-auto flex justify-between items-center">
+            <div class="left-banner">
+                <h1 class="text-4xl font-bold"><span class="text-blue-400 ">English</span> is Easy!!</h1>
+                <p class="bangla text-xl py-2 w-[80%]">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+                <form id="login-form" class="">
+                    <div class="flex flex-col gap-4">
+                      <input type="text" id="name" placeholder="Enter Your Name" class="input" required />
+                      <input type="text" id="code" placeholder="Type this code 123456 to login" class="input" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-5">Get Started</button>
+                </form>
+                  
+            </div>
+            <div class="banner">
+                <img src="./assets/hero-student.png" alt="">
+            </div>
+        </section>
+        <!-- Let's Learn Section -->
+        <section class="hid hidden">
+            <section class="w-11/12 mx-auto py-5" id="learn-section">
+                <div>
+                    <h1 class="text-center text-2xl font-semibold"><span class="text-[rgb(0,188,255)]  ">Let's</span> Learn Vocabularies</h1>
+                    <!-- Lesson button -->
+                    <div class="flex justify-center items-center gap-4 py-5 " id="lesson-container">
+                      
+                    </div>
+                </div>
+             </section>
+             <section id="select-lesson" class="w-11/12 py-10 bg-[rgb(248,248,248)] p-3 mx-auto rounded-sm flex flex-col justify-center items-center">
+                <p class="text-xs bangla text-gray-600 my-5">আপনি এখনো কোন Lesson Select করেন নি</p>
+                <h1 class="text-xl font-bold pb-2">একটি Lesson Select করুন।</h1>
+             </section>
+    
+             <!-- Loading -->
+             <section class="text-center hidden" id="loading">
+                <span class="loading loading-dots loading-xl"></span>
+             </section>
+    
+             <!-- Vocabulary Card Section -->
+             <section class="w-11/12 bg-[rgb(248,248,248)] p-3 mx-auto rounded-sm grid grid-cols-3 justify-center items-center" id="card-container">
+                
+                
+             </section>
+             
+            <!-- Next Lesson -->
+             <section id="next_lesson" class="hidden w-11/12 py-10 bg-[rgb(248,248,248)] p-3 mx-auto rounded-sm flex flex-col justify-center items-center">
+                <img src="./assets/alert-error.png" alt="">
+                <p class="py-3 text-xs bangla text-[rgb(121,113,107)]">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+                <h1 class="text-xl font-bold">নেক্সট Lesson এ যান</h1>
+             </section>
+    
+        </section>
+         <!-- Modal -->
+        <dialog id="details-word" class="modal">
+        <div class="modal-box" >
+            <div id="modal-box" class="py-2 bg-[rgb(248,248,248)] shadow-sm p-4">
+                
+                <div>
+                    <button class="btn bg-white">Enthusiastic</button>
+                    <button class="btn bg-white">Excited</button>
+                    <button class="btn bg-white">Keen</button>
+                </div>
+            </div>
+            <div class="modal-action">
+            <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn btn-primary flex justify-start">Complete Learning</button>
+            </form>
+            </div>
+        </div>
+        </dialog>
+
+        <!-- FAQ -->
+        <section class="w-11/12 mx-auto my-20 hid hidden" id="faq-section">
+            <h1 class="text-2xl font-bold text-center">
+                <span class="text-[rgb(0,188,255)]">Frequently </span>Asked Questions
+            </h1>
+            <div class="mt-10 text-lg font-semibold">
+                <!-- FAQ Item 1 -->
+                <div class="collapse collapse-plus bg-base-100 border border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-semibold">The difference between var, let, and const</div>
+                    <div class="collapse-content text-sm">
+                        <p><strong>var</strong>: Old way to declare variables. It can be changed and used anywhere in the code.</p>
+                        <p><strong>let</strong>: It can be changed, but only works where you declare it.</p>
+                        <p><strong>const</strong>: It cannot be changed after you declare it. Use it for things that stay the same. 😊</p>
+                    </div>
+                </div>
+        
+                <!-- FAQ Item 2 -->
+                <div class="collapse collapse-plus bg-base-100 border border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-semibold">Difference between map(), forEach(), and filter()</div>
+                    <div class="collapse-content text-sm">
+                        <p><strong>map()</strong>: Returns a new array with transformed elements.</p>
+                        <p><strong>forEach()</strong>: Loops through elements, no return.</p>
+                        <p><strong>filter()</strong>: Returns a new array with elements that pass a condition.</p>
+                    </div>
+                </div>
+        
+                <!-- FAQ Item 3 -->
+                <div class="collapse collapse-plus bg-base-100 border border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-semibold">Explain arrow functions and how they are different from regular functions</div>
+                    <div class="collapse-content text-sm">
+                        <p>Arrow functions are a shorter and cleaner way to write functions. They don’t have their own <code>this</code>, meaning they inherit <code>this</code> from the surrounding scope — this makes them perfect for callbacks and when we need to preserve context. Regular functions, however, do have their own <code>this</code>, which changes depending on how the function is called. Additionally, arrow functions can't be used as constructors, but regular functions can.</p>
+                    </div>
+                </div>
+        
+                <!-- FAQ Item 4 -->
+                <div class="collapse collapse-plus bg-base-100 border border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-semibold">How JavaScript Promises work</div>
+                    <div class="collapse-content text-sm">
+                        <p>A Promise is an object in JavaScript that handles asynchronous operations. It can be in one of three states: <strong>pending</strong> (still working), <strong>resolved/fulfilled</strong> (success), or <strong>rejected</strong> (error). When a Promise succeeds, it calls the <code>resolve()</code> function, and you handle it with <code>then()</code>. If something goes wrong, it calls <code>reject()</code>, and you handle errors with <code>catch()</code>.</p>
+                    </div>
+                </div>
+        
+                <!-- FAQ Item 5 -->
+                <div class="collapse collapse-plus bg-base-100 border border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-semibold">How closures work in JavaScript</div>
+                    <div class="collapse-content text-sm">
+                        <p>A closure happens when a function "remembers" the variables from its outer scope, even after that outer function has finished running. For example, if we create a function inside another function, and the inner function uses a variable from the outer one, that variable stays alive in memory, even though the outer function is done.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="flex justify-end mr-5 hid hidden">
+            <button class="cursor-pointer" onclick="scrollToSection('navbar')"><lord-icon
+                src="https://cdn.lordicon.com/dwoxxgps.json"
+                trigger="hover"
+                style="width:50px;height:50px">
+            </lord-icon></button>
+        </section>
+    </main>
+    <footer class="mt-5">
+        <hr class="bg-slate-500">
+        <section class="w-11/12 flex justify-between my-10 mx-auto">
+            <div>
+                <div class="hover:cursor-pointer">
+                    <h1 class="flex  items-center font-bold">English<img src="./assets/logo.png" alt="">জানালা</h1>
+                </div>
+                <h1 class="bangla">ইংরেজি শিখুন সহজে</h1>
+                <div>
+                    <h2>Providing ED-Tech Applications since 2025</h2>
+                </div>
+            </div>
+            <div class="">
+                <div>
+                    <h1 class="text-center font-semibold">Follow Us</h1>
+                </div>
+                <div class="flex  gap-4 mt-4">
+                    <a href="https://www.facebook.com/moinul.islam.umair.2024" class="btn btn-circle btn-sm bg-blue-500 text-white hover:bg-blue-600 tooltip" data-tip="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@umairislam505" class="btn btn-circle btn-sm bg-red-500 text-white hover:bg-red-600 tooltip" data-tip="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/moinul505/" class="btn btn-sm btn-circle bg-blue-700 text-white hover:bg-blue-800 tooltip" data-tip="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+    </footer>
+    <script src="./script/app.js"></script>
+    <script src="./script/login.js"></script>
+    <script src="./script/voice.js"></script>
+    <script src="./script/scroll.js"></script>
+
+    
+</body>
+</html>

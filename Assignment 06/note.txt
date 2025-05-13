@@ -1,0 +1,25 @@
+GitHub repo
+https://github.com/programming-hero-web-course1/b11-a6-english-janala-Umair505
+
+
+⚡ API Endpoints
+Get ⚡ All Levels
+https://openapi.programming-hero.com/api/levels/all
+
+Get ⚡ Words by Levels
+https:// openapi.programming-hero.com/api/level/{id}
+
+https://openapi.programming-hero.com/api/level/5
+Get ⚡ Words Detail
+
+https:// openapi.programming-hero.com/api/word/{id}
+https://openapi.programming-hero.com/api/word/5
+
+Get ⚡ All Words
+https://openapi.programming-hero.com/api/words/all
+
+
+
+Live Link 01: https://english-janala-assignment06.surge.sh
+Live Link 02: https://boisterous-youtiao-798247.netlify.app/
+GitHub: https://github.com/programming-hero-web-course1/b11-a6-english-janala-Umair505
